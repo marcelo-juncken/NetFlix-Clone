@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/menu_home">
+
+    <fragment
+        android:id="@+id/menu_home"
+        android:name="com.example.netflix.fragment.InicioFragment"
+        android:label="@string/menu_inicio"
+        tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/menu_busca"
+        android:name="com.example.netflix.fragment.BuscaFragment"
+        android:label="@string/menu_busca"
+        tools:layout="@layout/fragment_busca" />
+    <fragment
+        android:id="@+id/menu_add"
+        android:name="com.example.netflix.fragment.AddFragment"
+        android:label="@string/menu_add"
+        tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/menu_breve"
+        android:name="com.example.netflix.fragment.BreveFragment"
+        android:label="@string/menu_em_breve"
+        tools:layout="@layout/fragment_breve" />
+    <fragment
+        android:id="@+id/menu_download"
+        android:name="com.example.netflix.fragment.DownloadFragment"
+        android:label="@string/menu_download"
+        tools:layout="@layout/fragment_download" />
+</navigation>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NetFlix</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_inicio">Início</string>
+    <string name="menu_busca">Buscar</string>
+    <string name="menu_add">Adicionar</string>
+    <string name="menu_em_breve">Em breve</string>
+    <string name="menu_download">Download</string>
+</resources>
