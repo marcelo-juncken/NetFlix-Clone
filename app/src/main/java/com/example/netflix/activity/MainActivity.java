@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.netflix.R;
 import com.example.netflix.activity.autenticacao.LoginActivity;
+import com.example.netflix.model.Categoria;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +29,20 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
 
-        findViewById(R.id.btnLogin).setOnClickListener(v -> startActivity(new Intent(this, LoginActivity.class)));
+        //salvarCategorias();
+    }
+
+    private void salvarCategorias(){
+        new Categoria("Ação");
+        new Categoria("Aventura");
+        new Categoria("Animação");
+        new Categoria("Comédia");
+        new Categoria("Drama");
+        new Categoria("Épico");
+        new Categoria("Faroeste");
+        new Categoria("Ficção");
+        new Categoria("Guerra");
+        new Categoria("Terror");
     }
 
 }

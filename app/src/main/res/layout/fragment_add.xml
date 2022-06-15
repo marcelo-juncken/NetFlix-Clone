@@ -1,14 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cor_bg_app"
     tools:context=".fragment.AddFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="160dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="#676767"
+                app:cardCornerRadius="5dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/imageFake"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="32dp"
+                        android:src="@drawable/ic_camera" />
+
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <EditText
+                android:id="@+id/editTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.EditText"
+                android:layout_marginTop="32dp"
+                android:inputType="text"
+                android:background="@drawable/bg_edit_black_bg"
+                android:hint="Título"
+                android:padding="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="#454545"/>
+
+            <android.widget.Button
+                android:id="@+id/editGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:theme="@style/Theme.EditText"
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/white"
+                android:hint="Gênero"
+                android:textColorHint="#454545"
+                android:background="@drawable/bg_edit_black_bg" />
+
+            <EditText
+                android:id="@+id/editElenco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:inputType="text"
+                android:theme="@style/Theme.EditText"
+                android:background="@drawable/bg_edit_black_bg"
+                android:hint="Elenco"
+                android:padding="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="#454545" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editAno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:theme="@style/Theme.EditText"
+                    android:inputType="number"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit_black_bg"
+                    android:hint="Ano"
+                    android:maxLength="4"
+                    android:digits="0123456789"
+                    android:padding="16dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="#454545" />
+
+                <EditText
+                    android:id="@+id/editDuracao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:theme="@style/Theme.EditText"
+                    android:inputType="text"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit_black_bg"
+                    android:hint="Duração"
+                    android:padding="16dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="#454545" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editSinopse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:theme="@style/Theme.EditText"
+                android:background="@drawable/bg_edit_black_bg"
+                android:hint="Sinopse"
+                android:padding="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="#454545" />
+
+            <android.widget.Button
+                android:id="@+id/btnCadastrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Cadastrar"
+                android:textColor="@color/cor_bg_app"
+                android:background="@drawable/bg_edit"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:indeterminateTint="@color/colorPrimary"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
