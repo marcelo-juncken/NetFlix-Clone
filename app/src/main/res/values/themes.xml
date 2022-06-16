@@ -24,4 +24,14 @@
         <!-- esse seugndo determina a largura minima q pode ter na dialog -->
         <item name="android:windowMinWidthMinor">80%</item>
     </style>
+
+    <style name="Theme.SearchView" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorHint">#7C7C7C</item>
+    </style>
+
+    <style name="Theme.FloatingActionButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorOnSecondary">@color/white</item>
+    </style>
 </resources>

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.NetFlix"
         tools:targetApi="31">
         <activity
+            android:name=".activity.DetalhesPostActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.CategoriasActivity"
             android:exported="false" />
         <activity

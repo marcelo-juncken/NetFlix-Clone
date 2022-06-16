@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textSize="13sp"
             android:background="@android:color/transparent"
             android:text="Séries"
             android:textAllCaps="false"
@@ -37,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textSize="13sp"
             android:background="@android:color/transparent"
             android:text="Filmes"
             android:textAllCaps="false"
@@ -49,6 +51,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:text="Minha lista"
+            android:textSize="13sp"
             android:textAllCaps="false"
             android:textColor="@color/white" />
     </LinearLayout>

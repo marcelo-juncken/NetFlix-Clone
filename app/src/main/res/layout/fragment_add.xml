@@ -21,8 +21,8 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:padding="32dp">
 
             <androidx.cardview.widget.CardView
@@ -40,7 +40,7 @@
                         android:id="@+id/image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="centerCrop" />
 
                     <ImageView
                         android:id="@+id/imageFake"
@@ -48,7 +48,6 @@
                         android:layout_height="match_parent"
                         android:padding="32dp"
                         android:src="@drawable/ic_camera" />
-
                 </FrameLayout>
             </androidx.cardview.widget.CardView>
 
@@ -57,41 +56,41 @@
                 android:id="@+id/editTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/Theme.EditText"
                 android:layout_marginTop="32dp"
-                android:inputType="text"
                 android:background="@drawable/bg_edit_black_bg"
                 android:hint="Título"
+                android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/white"
-                android:textColorHint="#454545"/>
+                android:textColorHint="#454545"
+                android:theme="@style/Theme.EditText" />
 
             <android.widget.Button
                 android:id="@+id/editGenero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:theme="@style/Theme.EditText"
-                android:textAlignment="textStart"
-                android:textSize="16sp"
-                android:paddingHorizontal="16dp"
-                android:textColor="@color/white"
+                android:background="@drawable/bg_edit_black_bg"
                 android:hint="Gênero"
+                android:paddingHorizontal="16dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
                 android:textColorHint="#454545"
-                android:background="@drawable/bg_edit_black_bg" />
+                android:textSize="16sp"
+                android:theme="@style/Theme.EditText" />
 
             <EditText
                 android:id="@+id/editElenco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:inputType="text"
-                android:theme="@style/Theme.EditText"
                 android:background="@drawable/bg_edit_black_bg"
                 android:hint="Elenco"
+                android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/white"
-                android:textColorHint="#454545" />
+                android:textColorHint="#454545"
+                android:theme="@style/Theme.EditText" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -104,16 +103,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:theme="@style/Theme.EditText"
-                    android:inputType="number"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edit_black_bg"
-                    android:hint="Ano"
-                    android:maxLength="4"
                     android:digits="0123456789"
+                    android:hint="Ano"
+                    android:inputType="number"
+                    android:maxLength="4"
                     android:padding="16dp"
                     android:textColor="@color/white"
-                    android:textColorHint="#454545" />
+                    android:textColorHint="#454545"
+                    android:theme="@style/Theme.EditText" />
 
                 <EditText
                     android:id="@+id/editDuracao"
@@ -121,14 +120,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:theme="@style/Theme.EditText"
-                    android:inputType="text"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edit_black_bg"
                     android:hint="Duração"
+                    android:inputType="text"
                     android:padding="16dp"
                     android:textColor="@color/white"
-                    android:textColorHint="#454545" />
+                    android:textColorHint="#454545"
+                    android:theme="@style/Theme.EditText" />
 
             </LinearLayout>
 
@@ -137,21 +136,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:theme="@style/Theme.EditText"
                 android:background="@drawable/bg_edit_black_bg"
                 android:hint="Sinopse"
                 android:padding="16dp"
                 android:textColor="@color/white"
-                android:textColorHint="#454545" />
+                android:textColorHint="#454545"
+                android:theme="@style/Theme.EditText" />
 
             <android.widget.Button
                 android:id="@+id/btnCadastrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/bg_edit"
                 android:text="Cadastrar"
-                android:textColor="@color/cor_bg_app"
-                android:background="@drawable/bg_edit"/>
+                android:textColor="@color/cor_bg_app" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -160,7 +159,7 @@
                 android:layout_marginTop="8dp"
                 android:indeterminateTint="@color/colorPrimary"
                 android:visibility="gone"
-                tools:visibility="visible"/>
+                tools:visibility="visible" />
         </LinearLayout>
 
     </ScrollView>

@@ -1,6 +1,8 @@
 package com.example.netflix.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +14,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.netflix.R;
+import com.example.netflix.activity.DetalhesPostActivity;
 import com.example.netflix.model.Categoria;
 import com.example.netflix.model.Post;
 
 import java.util.List;
 
-public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyViewHolder> implements AdapterPost.OnClickListener {
+public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyViewHolder> {
 
-    private List<Categoria> categoriaList;
-    private Context context;
+    private final List<Categoria> categoriaList;
+    private final Activity activity;
 
-    public AdapterCategoria(List<Categoria> categoriaList, Context context) {
+    public AdapterCategoria(List<Categoria> categoriaList, Activity activity) {
         this.categoriaList = categoriaList;
-        this.context = context;
+        this.activity = activity;
     }
 
     @NonNull
@@ -45,9 +48,9 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyVi
     }
 
     public void configRV(MyViewHolder holder, Categoria categoria) {
-        holder.rvListagem.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        holder.rvListagem.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
         holder.rvListagem.setHasFixedSize(true);
-        holder.adapterPost = new AdapterPost(categoria.getPostList(),this);
+        holder.adapterPost = new AdapterPost(categoria.getPostList(), activity);
         holder.rvListagem.setAdapter(holder.adapterPost);
         holder.adapterPost.notifyDataSetChanged();
     }
@@ -57,10 +60,6 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyVi
         return categoriaList.size();
     }
 
-    @Override
-    public void onClick(Post post) {
-        Toast.makeText(context, post.getTitulo(), Toast.LENGTH_SHORT).show();
-    }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         AdapterPost adapterPost;

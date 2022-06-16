@@ -131,7 +131,7 @@ public class InicioFragment extends Fragment {
     private void configRV() {
         rvCategorias.setLayoutManager(new LinearLayoutManager(getContext()));
         rvCategorias.setHasFixedSize(true);
-        adapterCategoria = new AdapterCategoria(categoriaList, getContext());
+        adapterCategoria = new AdapterCategoria(categoriaList, requireActivity());
         rvCategorias.setAdapter(adapterCategoria);
     }
 

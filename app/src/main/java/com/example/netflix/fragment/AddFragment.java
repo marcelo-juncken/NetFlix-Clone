@@ -9,12 +9,6 @@ import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -28,10 +22,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
 import com.example.netflix.R;
 import com.example.netflix.activity.CategoriasActivity;
 import com.example.netflix.helper.FirebaseHelper;
-import com.example.netflix.model.Categoria;
 import com.example.netflix.model.Post;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -41,7 +39,6 @@ import com.gun0912.tedpermission.normal.TedPermission;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AddFragment extends Fragment {
@@ -58,6 +55,7 @@ public class AddFragment extends Fragment {
     private List<String> categoriaEscolhidas = new ArrayList<>();
 
     private AlertDialog dialog;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,6 +95,7 @@ public class AddFragment extends Fragment {
                                 ocultarTeclado();
                                 if (caminhoImagem != null) {
                                     progressBar.setVisibility(View.VISIBLE);
+                                    btnCadastrar.requestFocus();
                                     btnCadastrar.setEnabled(false);
 
                                     Post post = new Post();
@@ -110,7 +109,7 @@ public class AddFragment extends Fragment {
 
                                     salvarImagemFirebase(post);
                                 } else {
-                                    image.requestFocus();
+                                    editTitulo.requestFocus();
                                     showDialog("Atenção! Foto do poster necessária.", "É obrigatório ter uma foto para a capa.");
                                 }
                             } else {

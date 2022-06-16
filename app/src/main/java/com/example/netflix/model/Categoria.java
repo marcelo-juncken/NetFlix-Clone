@@ -7,7 +7,7 @@ import com.google.firebase.database.Exclude;
 import java.io.Serializable;
 import java.util.List;
 
-public class Categoria implements Serializable {
+public class Categoria {
 
     private String id;
     private String nome;
