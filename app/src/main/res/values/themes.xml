@@ -29,6 +29,7 @@
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:editTextColor">@android:color/white</item>
         <item name="android:textColorHint">#7C7C7C</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
     <style name="Theme.FloatingActionButton" parent="Theme.AppCompat.Light.NoActionBar">

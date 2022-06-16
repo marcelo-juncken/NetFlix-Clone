@@ -7,47 +7,19 @@
     android:background="@color/cor_bg_app"
     tools:context=".fragment.BuscaFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="12dp"
+        android:layout_height="56dp"
         android:background="#333333"
-        android:orientation="horizontal"
+        app:queryBackground="@android:color/transparent"
+        android:theme="@style/Theme.SearchView"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="8dp"
-            android:drawableTint="#99FFFFFF"
-            android:hint="Pesquisar"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:paddingVertical="12dp"
-            android:theme="@style/Theme.SearchView" />
-
-        <ImageButton
-            android:id="@+id/ibClose"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="16dp"
-            android:src="@drawable/ic_close_search"
-            android:visibility="gone"
-            tools:visibility="visible" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Busque por série, filme, gênero e etc."
+        app:searchIcon="@drawable/ic_search" />
 
 
     <TextView
@@ -61,7 +33,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBusca"
@@ -72,7 +44,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
-        tools:listitem="@layout/adapter_listagem_busca" />
+        tools:listitem="@layout/adapter_listagem_busca"
+        tools:itemCount="3"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"

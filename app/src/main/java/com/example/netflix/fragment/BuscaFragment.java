@@ -2,6 +2,12 @@ package com.example.netflix.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,26 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.netflix.R;
 import com.example.netflix.adapter.AdapterBusca;
-import com.example.netflix.adapter.AdapterCategoria;
 import com.example.netflix.helper.FirebaseHelper;
-import com.example.netflix.model.Categoria;
 import com.example.netflix.model.Post;
-import com.google.android.material.slider.Slider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,14 +30,15 @@ import java.util.List;
 
 public class BuscaFragment extends Fragment {
 
-    private EditText searchView;
     private TextView textInfo;
-    private ImageButton ibClose;
+    private SearchView searchView;
 
     private RecyclerView rvBusca;
     private AdapterBusca adapterBusca;
     private List<Post> postListAll = new ArrayList<>();
     private List<Post> postList = new ArrayList<>();
+
+    private EditText editPesquisa;
 
 
     @Override
@@ -67,6 +58,7 @@ public class BuscaFragment extends Fragment {
         configSearchView();
     }
 
+
     private void recuperaPosts() {
         DatabaseReference postRef = FirebaseHelper.getDatabaseReference()
                 .child("posts");
@@ -82,7 +74,7 @@ public class BuscaFragment extends Fragment {
                     }
                 }
                 postList.addAll(postListAll);
-                adapterBusca.notifyDataSetChanged();
+                recuperaPostsPesquisa(editPesquisa.getText().toString());
             }
 
             @Override
@@ -111,45 +103,33 @@ public class BuscaFragment extends Fragment {
 
     private void configSearchView() {
 
-        searchView.addTextChangedListener(new TextWatcher() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+            public boolean onQueryTextSubmit(String query) {
+                searchView.clearFocus();
+                return false;
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                recuperaPostsPesquisa(s.toString());
-
-                if(s.toString().isEmpty()){
-                    ibClose.setVisibility(View.GONE);
-                } else {
-                    ibClose.setVisibility(View.VISIBLE);
-                }
+            public boolean onQueryTextChange(String newText) {
+                recuperaPostsPesquisa(newText);
+                return false;
             }
         });
 
-        searchView.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                ocultarTeclado();
-            }
-            return false;
-        });
-
-        ibClose.setOnClickListener(v -> {
+        searchView.findViewById(androidx.appcompat.R.id.search_close_btn).setOnClickListener(v -> {
             limparPesquisa();
         });
+
+
     }
 
     private void limparPesquisa() {
-        searchView.getText().clear();
+        EditText searchText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchText.getText().clear();
         ocultarTeclado();
         searchView.clearFocus();
+        textInfo.setVisibility(View.GONE);
     }
 
 
@@ -168,9 +148,9 @@ public class BuscaFragment extends Fragment {
 
     private void iniciaComponentes(View view) {
         searchView = view.findViewById(R.id.searchView);
-        textInfo = view.findViewById(R.id.textInfo);
-        ibClose = view.findViewById(R.id.ibClose);
-        rvBusca = view.findViewById(R.id.rvBusca);
+        editPesquisa = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
 
+        textInfo = view.findViewById(R.id.textInfo);
+        rvBusca = view.findViewById(R.id.rvBusca);
     }
 }
