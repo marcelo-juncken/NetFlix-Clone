@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText editLogin, editSenha;
-    private Button btnContinuar;
     private ProgressBar progressBar;
 
     @Override
@@ -82,7 +81,6 @@ public class CadastroActivity extends AppCompatActivity {
     private void iniciaComponentes() {
         editLogin = findViewById(R.id.editLogin);
         editSenha = findViewById(R.id.editSenha);
-        btnContinuar = findViewById(R.id.btnContinuar);
         progressBar = findViewById(R.id.progressBar);
     }
 

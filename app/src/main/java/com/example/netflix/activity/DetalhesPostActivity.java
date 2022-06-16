@@ -4,21 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.netflix.R;
-import com.example.netflix.adapter.AdapterCategoria;
 import com.example.netflix.adapter.AdapterPost;
 import com.example.netflix.helper.FirebaseHelper;
-import com.example.netflix.model.Categoria;
+import com.example.netflix.model.Download;
 import com.example.netflix.model.Post;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,13 +27,14 @@ import java.util.List;
 
 public class DetalhesPostActivity extends AppCompatActivity {
 
-    private ImageView image;
-    private TextView textNomePoster, textAno, textDuracao, textSinopse, textElenco;
+    private ImageView image, imgDownload;
+    private TextView textNomePoster, textAno, textDuracao, textSinopse, textElenco, textBaixar;
     private ConstraintLayout clAssistir, clBaixar;
     private RecyclerView rvSemelhantes;
 
     private Post postSelecionado;
     private final List<Post> postList = new ArrayList<>();
+    private final List<String> downloadsList = new ArrayList<>();
     private AdapterPost adapterPost;
 
     @Override
@@ -51,6 +47,52 @@ public class DetalhesPostActivity extends AppCompatActivity {
         configDados();
         configRV();
         recuperaPosts();
+        recuperaDownloads();
+    }
+
+    private void configDownloads() {
+        if (downloadsList.contains(postSelecionado.getId())) {
+            textBaixar.setText("Remover dos downloads");
+            imgDownload.setImageResource(R.drawable.ic_download_done);
+        } else {
+            textBaixar.setText("Baixar");
+            imgDownload.setImageResource(R.drawable.ic_download);
+        }
+    }
+
+    private void configDownloadList() {
+        if (downloadsList.contains(postSelecionado.getId())) {
+            downloadsList.remove(postSelecionado.getId());
+        } else {
+            downloadsList.add(postSelecionado.getId());
+        }
+        Download.salvar(downloadsList);
+        configDownloads();
+    }
+
+    private void recuperaDownloads() {
+        DatabaseReference downloadsRef = FirebaseHelper.getDatabaseReference()
+                .child("downloads");
+        downloadsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                downloadsList.clear();
+                if (snapshot.exists()) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        String download = ds.getValue(String.class);
+                        if (download != null) {
+                            downloadsList.add(download);
+                        }
+                    }
+                }
+                configDownloads();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 
@@ -64,13 +106,14 @@ public class DetalhesPostActivity extends AppCompatActivity {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Post postTemp = ds.getValue(Post.class);
                     if (postTemp != null && !postTemp.getTitulo().equals(postSelecionado.getTitulo())) {
-                        if(!Collections.disjoint(postTemp.getGeneroList(), postSelecionado.getGeneroList())){
-                            postList.add(postTemp);
+                        if (!Collections.disjoint(postTemp.getGeneroList(), postSelecionado.getGeneroList())) {
+                            postList.add(0, postTemp);
                         }
                     }
                 }
                 adapterPost.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -78,7 +121,7 @@ public class DetalhesPostActivity extends AppCompatActivity {
     }
 
     private void configRV() {
-        rvSemelhantes.setLayoutManager(new GridLayoutManager(this,3));
+        rvSemelhantes.setLayoutManager(new GridLayoutManager(this, 3));
         rvSemelhantes.setHasFixedSize(true);
         adapterPost = new AdapterPost(postList, this);
         rvSemelhantes.setAdapter(adapterPost);
@@ -102,16 +145,20 @@ public class DetalhesPostActivity extends AppCompatActivity {
         findViewById(R.id.ibVoltar).setOnClickListener(v -> finish());
 
         textSinopse.setOnClickListener(v -> {
-            if(textSinopse.getMaxLines()==3) {
+            if (textSinopse.getMaxLines() == 3) {
                 textSinopse.setMaxLines(Integer.MAX_VALUE);
-            }else{
+            } else {
                 textSinopse.setMaxLines(3);
             }
         });
+
+        clBaixar.setOnClickListener(v -> configDownloadList());
     }
 
     private void iniciaComponentes() {
         image = findViewById(R.id.image);
+        imgDownload = findViewById(R.id.imgDownload);
+        textBaixar = findViewById(R.id.textBaixar);
         textNomePoster = findViewById(R.id.textNomePoster);
         textAno = findViewById(R.id.textAno);
         textDuracao = findViewById(R.id.textDuracao);

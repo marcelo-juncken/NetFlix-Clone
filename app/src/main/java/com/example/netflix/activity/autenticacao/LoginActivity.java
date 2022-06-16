@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editLogin, editSenha;
-    private Button btnEntrar;
     private ProgressBar progressBar;
 
     @Override
@@ -84,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
     private void iniciaComponentes() {
         editLogin = findViewById(R.id.editLogin);
         editSenha = findViewById(R.id.editSenha);
-        btnEntrar = findViewById(R.id.btnEntrar);
         progressBar = findViewById(R.id.progressBar);
     }
 }

@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.example.netflix.R;
+import com.example.netflix.activity.autenticacao.LoginActivity;
+import com.example.netflix.helper.FirebaseHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -25,7 +27,11 @@ public class SplashActivity extends AppCompatActivity {
 
     private void homeApp() {
         finish();
-        startActivity(new Intent(this, MainActivity.class));
+        if(FirebaseHelper.getAutenticado()) {
+            startActivity(new Intent(this, MainActivity.class));
+        }else{
+            startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 
     private void hideSystemBars() {

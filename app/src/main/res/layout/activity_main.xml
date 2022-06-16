@@ -25,6 +25,7 @@
         android:layout_height="60dp"
         android:background="@color/cor_bg_app"
         app:elevation="15dp"
+        android:paddingEnd="8dp"
         app:itemTextColor="@drawable/item_selected"
         app:itemIconTint="@drawable/item_selected"
         app:labelVisibilityMode="labeled"

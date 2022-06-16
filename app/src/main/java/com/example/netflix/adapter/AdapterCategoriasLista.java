@@ -16,9 +16,9 @@ import java.util.List;
 
 public class AdapterCategoriasLista extends RecyclerView.Adapter<AdapterCategoriasLista.MyViewHolder> {
 
-    private List<Categoria> categoriaList;
-    private List<String> categoriaString;
-    private OnClick onClick;
+    private final List<Categoria> categoriaList;
+    private final List<String> categoriaString;
+    private final OnClick onClick;
 
     public AdapterCategoriasLista(List<Categoria> categoriaList, List<String> categoriaString, OnClick onClick) {
         this.categoriaList = categoriaList;

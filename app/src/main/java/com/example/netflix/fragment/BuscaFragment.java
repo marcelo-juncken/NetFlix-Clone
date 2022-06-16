@@ -35,8 +35,8 @@ public class BuscaFragment extends Fragment {
 
     private RecyclerView rvBusca;
     private AdapterBusca adapterBusca;
-    private List<Post> postListAll = new ArrayList<>();
-    private List<Post> postList = new ArrayList<>();
+    private final List<Post> postListAll = new ArrayList<>();
+    private final List<Post> postList = new ArrayList<>();
 
     private EditText editPesquisa;
 
@@ -70,7 +70,7 @@ public class BuscaFragment extends Fragment {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Post post = ds.getValue(Post.class);
                     if (post != null) {
-                        postListAll.add(post);
+                        postListAll.add(0, post);
                     }
                 }
                 postList.addAll(postListAll);

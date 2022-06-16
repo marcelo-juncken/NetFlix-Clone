@@ -35,7 +35,6 @@ public class InicioFragment extends Fragment {
     private AdapterCategoria adapterCategoria;
     private final List<Categoria> categoriaListTemp = new ArrayList<>();
     private final List<Categoria> categoriaList = new ArrayList<>();
-    private final List<Post> postList = new ArrayList<>();
 
     private Button btnSeries, btnFilmes, btnMinhaLista;
     private ProgressBar progressBar;
@@ -93,7 +92,6 @@ public class InicioFragment extends Fragment {
         postRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                postList.clear();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Post post = ds.getValue(Post.class);
                     if (post != null) {
@@ -102,23 +100,20 @@ public class InicioFragment extends Fragment {
 
                                 List<Post> postTemp = new ArrayList<>(categoriaListTemp.get(i).getPostList());
 
-                                postTemp.add(post);
+                                postTemp.add(0, post);
                                 categoriaListTemp.get(i).setPostList(postTemp);
                             }
                         }
 
                     }
                 }
-
-                for (Categoria categoria : categoriaListTemp){
-                    if (categoria.getPostList().size()!=0){
+                for (Categoria categoria : categoriaListTemp) {
+                    if (categoria.getPostList().size() != 0) {
                         categoriaList.add(categoria);
                     }
                 }
                 progressBar.setVisibility(View.GONE);
                 adapterCategoria.notifyDataSetChanged();
-
-
             }
 
             @Override
